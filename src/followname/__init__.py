@@ -3,17 +3,14 @@
 # Set encoding default for python 2.7
 # vim: syntax=python noexpandtab
 
-import sys
 import os
 import time
 
-if sys.version_info < (3,):
-	range = xrange
 
-#
 class Follower(object):
+
 	"""\
-	Implements tail --follow=name like GNU tail 
+	Implements tail --follow=name like GNU tail
 	"""
 	line_terminators = ('\r\n', '\n', '\r')
 
@@ -40,7 +37,7 @@ class Follower(object):
 			# Check if we need to open the file, this can happen if the file does not exist yet or if
 			# this is the first time through the loop.
 			#
-			if ( self.file is None ):
+			if (self.file is None):
 				try:
 					self.file = open(self.filename, 'r')
 				except IOError:
@@ -54,16 +51,16 @@ class Follower(object):
 
 				self.info = os.fstat(self.file.fileno())
 
-				if (self.all == False):
+				if (not self.all):
 					self.file.seek(0, 2)
 
 				if self.debug:
 					print("Opened %s inode: %d size: %d" % (self.filename, self.info.st_ino, self.info.st_size))
 
 			else:
-				info = os.fstat(self.file.fileno())
+				self.info = os.fstat(self.file.fileno())
 
-			# Get the next line of data 
+			# Get the next line of data
 			#
 			line = self.file.readline()
 			if line:
@@ -109,7 +106,7 @@ class Follower(object):
 				continue
 
 			# We found the file, stat the current version of the file and compare against previous info
-			# 
+			#
 			self.testinfo = os.fstat(self.testfile.fileno())
 			if (self.info.st_ino == self.testinfo.st_ino and self.info.st_size <= self.testinfo.st_size):
 
@@ -126,11 +123,9 @@ class Follower(object):
 			self.file = self.testfile
 			self.testfile = None
 
-
 	def close(self):
 		if (self.file is not None):
 			self.file.close()
-
 
 
 def follow():
@@ -161,9 +156,11 @@ def follow():
 	follower = Follower('test_follow.txt', all=True)
 	return follower.follow()
 
+
 def _test():
 	import doctest
 	doctest.testmod()
+
 
 def _main(filepath, options):
 	follower = Follower(filepath, all=options.all, end=options.end)
@@ -180,20 +177,19 @@ def _main(filepath, options):
 
 def main():
 	from optparse import OptionParser
-	import sys
-	usage='usage: %prog [options] filename'
+	usage = 'usage: %prog [options] filename'
 	parser = OptionParser(usage=usage)
 
 	parser.add_option('-e', '--end', dest='end', action="store_true", default=False,
-			help='display all data in file when started, default is new data only')
+				help='display all data in file when started, default is new data only')
 
 	parser.add_option('-a', '--all', dest='all', action="store_true", default=False,
-			help='display all data in file when started, default is new data only')
+				help='display all data in file when started, default is new data only')
 
 	parser.add_option('-s', '--sleep-interval', dest='sleep', default=1.0, metavar='S', type='float',
-			help='sleep  for  approximately  S  seconds between iterations')
+				help='sleep  for  approximately  S  seconds between iterations')
 	parser.add_option('-f', '--follow', dest='follow', default=False, action='store_true',
-			help='output appended data as  the  file  grows')
+				help='output appended data as  the  file  grows')
 
 	(options, args) = parser.parse_args()
 
@@ -202,6 +198,7 @@ def main():
 		exit(1)
 
 	_main(args[0], options)
+
 
 if __name__ == '__main__':
 	main()
