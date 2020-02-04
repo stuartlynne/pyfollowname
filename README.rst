@@ -24,7 +24,7 @@ Install with ``pip`` or ``easy_install``.
 
 ::
 
-    pip install tailer
+    pip install followname
 
 Examples
 ========
@@ -33,7 +33,7 @@ Examples
 
     import followname
     follower = FollowName("testfile.txt")
-    for line in tailer.follow(open('test.txt')):
+    for line in follower.follow(open('test.txt')):
         print line
 
 Running Tests
@@ -43,8 +43,8 @@ FollowName currently only has doctests.
 
 Run tests with nose::
 
-    nosetests --with-doctest src/tailer
+    nosetests --with-doctest src/followname
 
 Run tests with doctest::
 
-    python -m doctest -v src/tailer/__init__.py
+    python -m doctest -v src/followname/__init__.py
