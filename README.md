@@ -10,9 +10,9 @@ followname only requires read access to the file.
 
 * ``followname`` - read lines as a file grows
 
-It also comes with ``followname``, a command line version offering the same functionality as GNU tail --follow=name. This can be particularly useful on Windows systems that have no tail equivalent.
+It also comes with ``followname``, a command line version offering the same functionality as GNU tail --follow=name. 
 
-- `FollowName on GitHub <http://github.com/stuartlynne/followname>`_
+- `FollowName on GitHub <http://github.com/stuartlynne/pyfollowname>`_
 - `FollowName on Pypi <http://pypi.python.org/pypi/followname>`_
 
 ## Installation
