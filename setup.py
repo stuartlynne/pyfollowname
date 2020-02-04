@@ -1,12 +1,13 @@
 from distutils.core import setup
 
+
 def main():
 
     setup(
-        name = 'followname',
+        name='followname',
         packages=['followname'],
-        package_dir = {'':'src'},
-        version = open('VERSION.txt').read().strip(),
+        package_dir={'': 'src'},
+        version=open('VERSION.txt').read().strip(),
         author='Stuart Lynne',
         author_email='stuart.lynne@gmail.com',
         url='http://github.com/six8/pyfollowname',
@@ -14,7 +15,7 @@ def main():
         license='MIT',
         keywords=['tail', 'follow'],
         description='Python tail is a simple implementation of GNU tail --follow=name.',
-        classifiers = [
+        classifiers=[
             "Programming Language :: Python",
             "Development Status :: 3 - Alpha",
             "Environment :: Console",
@@ -30,12 +31,13 @@ def main():
             "Topic :: System :: Systems Administration",
         ],
         long_description=open('README.rst').read(),
-        entry_points = {
+        entry_points={
             'console_scripts': [
                 'followname = followname:main',
             ],
         },
     )
+
 
 if __name__ == '__main__':
     main()

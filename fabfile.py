@@ -2,6 +2,7 @@ from fabric.api import local, task, abort, settings
 from clom import clom
 from fabric.colors import green
 
+
 @task
 def release():
     """
