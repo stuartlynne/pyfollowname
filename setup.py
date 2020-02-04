@@ -1,4 +1,5 @@
-from distutils.core import setup
+
+from setuptools import setup
 
 
 def main():
@@ -10,11 +11,12 @@ def main():
         version=open('VERSION.txt').read().strip(),
         author='Stuart Lynne',
         author_email='stuart.lynne@gmail.com',
-        url='http://github.com/six8/pyfollowname',
-        download_url='http://github.com/stuartlynne/pyfollowname',
+        url='http://github.com/stuartlynne/pyfollowname',
+        download_url='http://github.com/stuartlynne/pyfollowname.git',
         license='MIT',
         keywords=['tail', 'follow'],
         description='Python tail is a simple implementation of GNU tail --follow=name.',
+        entry_points={ 'console_scripts': [ 'followname = followname:main', ], },
         classifiers=[
             "Programming Language :: Python",
             "Development Status :: 3 - Alpha",
@@ -31,11 +33,6 @@ def main():
             "Topic :: System :: Systems Administration",
         ],
         long_description=open('README.rst').read(),
-        entry_points={
-            'console_scripts': [
-                'followname = followname:main',
-            ],
-        },
     )
 
 
